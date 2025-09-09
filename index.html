@@ -54,12 +54,14 @@
 
         /* Ad Banner Styles */
         .ad-banner {
+            background-color: transparent;
+            color: #333;
             text-align: center;
             padding: 0;
+            height: 50px;
+            font-size: 0;
             position: relative;
             overflow: hidden;
-            min-height: 50px;
-            background-color: #f8f8f8;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -334,13 +336,17 @@
         }
 
         .ad-placeholder {
-            background-color: #FFD700;
+            background-color: transparent;
             color: #333;
-            padding: 40px 20px;
-            border-radius: 8px;
+            padding: 0;
+            height: 50px;
+            font-size: 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
-            font-size: 18px;
-            font-weight: 600;
         }
 
         .ad-timer {
@@ -416,18 +422,7 @@
     <!-- Login Screen -->
     <div id="loginScreen" class="screen active">
         <!-- TOP AD BANNER -->
-        <div class="ad-banner" id="ad-login-top">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '29699d03a6d78ff0424b6d34e9386b6c',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/29699d03a6d78ff0424b6d34e9386b6c/invoke.js"></script>
-        </div>
+        <div class="ad-banner" id="loginTopAd"></div>
         
         <div class="login-container">
             <form class="login-form" id="loginForm">
@@ -451,35 +446,13 @@
         </div>
         
         <!-- BOTTOM AD BANNER -->
-        <div class="ad-banner bottom" id="ad-login-bottom">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '29699d03a6d78ff0424b6d34e9386b6c',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/29699d03a6d78ff0424b6d34e9386b6c/invoke.js"></script>
-        </div>
+        <div class="ad-banner bottom" id="loginBottomAd"></div>
     </div>
 
     <!-- Home Screen -->
     <div id="homeScreen" class="screen">
         <!-- TOP AD BANNER -->
-        <div class="ad-banner" id="ad-home-top">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '29699d03a6d78ff0424b6d34e9386b6c',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/29699d03a6d78ff0424b6d34e9386b6c/invoke.js"></script>
-        </div>
+        <div class="ad-banner" id="homeTopAd"></div>
         
         <div class="home-container">
             <div class="search-container">
@@ -497,29 +470,15 @@
         </div>
         
         <!-- BOTTOM AD BANNER -->
-        <div class="ad-banner bottom" id="ad-home-bottom">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '29699d03a6d78ff0424b6d34e9386b6c',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/29699d03a6d78ff0424b6d34e9386b6c/invoke.js"></script>
-        </div>
+        <div class="ad-banner bottom" id="homeBottomAd"></div>
     </div>
 
     <!-- Ad Popup Modal -->
     <div class="modal-overlay" id="adModal">
         <div class="ad-modal">
             <div class="ad-content">
-                <!-- AD POPUP CONTENT: Edit below -->
-                <div class="ad-placeholder">
-                    📱 SPECIAL OFFER<br>
-                    <small style="font-size: 14px; font-weight: normal;">Get Premium Features at 30% OFF!</small>
-                </div>
+                <!-- AD POPUP CONTENT -->
+                <div class="ad-placeholder" id="modalAd"></div>
                 <div class="ad-timer" id="adTimer">Please wait 3 seconds...</div>
                 <button class="close-ad-btn" id="closeAdBtn" disabled>Continue to Download</button>
             </div>
@@ -667,6 +626,13 @@
         const adTimer = document.getElementById('adTimer');
         const toast = document.getElementById('toast');
 
+        // Ad container elements
+        const loginTopAd = document.getElementById('loginTopAd');
+        const loginBottomAd = document.getElementById('loginBottomAd');
+        const homeTopAd = document.getElementById('homeTopAd');
+        const homeBottomAd = document.getElementById('homeBottomAd');
+        const modalAd = document.getElementById('modalAd');
+
         // Current downloading app
         let currentDownloadingApp = null;
 
@@ -674,13 +640,36 @@
         function init() {
             renderApps(apps);
             setupEventListeners();
-            refreshAds();
+            loadAds();
         }
 
-        // Refresh ads when switching screens
-        function refreshAds() {
-            // This function ensures ads are properly loaded when switching between screens
-            // The ad scripts will automatically run when their containers are visible
+        // Load ads in all ad containers
+        function loadAds() {
+            const adContainers = [loginTopAd, loginBottomAd, homeTopAd, homeBottomAd, modalAd];
+            
+            adContainers.forEach(container => {
+                // Create first script tag
+                const script1 = document.createElement('script');
+                script1.type = 'text/javascript';
+                script1.textContent = `
+                    atOptions = {
+                        'key' : '29699d03a6d78ff0424b6d34e9386b6c',
+                        'format' : 'iframe',
+                        'height' : 50,
+                        'width' : 320,
+                        'params' : {}
+                    };
+                `;
+                
+                // Create second script tag
+                const script2 = document.createElement('script');
+                script2.type = 'text/javascript';
+                script2.src = '//www.highperformanceformat.com/29699d03a6d78ff0424b6d34e9386b6c/invoke.js';
+                
+                // Append scripts to container
+                container.appendChild(script1);
+                container.appendChild(script2);
+            });
         }
 
         // Setup event listeners
@@ -719,7 +708,6 @@
                     homeScreen.style.opacity = '0';
                     setTimeout(() => {
                         homeScreen.style.opacity = '1';
-                        refreshAds(); // Refresh ads when switching to home screen
                     }, 50);
                 }, 300);
                 
