@@ -1,29 +1,4 @@
-   <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <title>Exported Code</title>
-                        <style>body {
-  font-family: sans-serif;
-  padding: 20px;
-  background-color: #f0f0f0;
-}
-
-h1 {
-  color: #0096FF;
-}
-
-button {
-  padding: 10px 15px;
-  border: none;
-  background-color: #0096FF;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}</style>
-                    </head>
-                    <body>
-                        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -79,19 +54,15 @@ button {
 
         /* Ad Banner Styles */
         .ad-banner {
-            background-color: #FFD700;
-            color: #333;
             text-align: center;
-            padding: 8px;
-            font-size: 14px;
-            font-weight: 500;
+            padding: 0;
             position: relative;
             overflow: hidden;
-        }
-
-        .ad-banner::before {
-            content: "📢";
-            margin-right: 8px;
+            min-height: 50px;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .ad-banner.bottom {
@@ -444,8 +415,19 @@ button {
 <body>
     <!-- Login Screen -->
     <div id="loginScreen" class="screen active">
-        <!-- TOP AD BANNER: Edit content below -->
-        <div class="ad-banner">🔥 HOT DEAL: Premium Apps 50% OFF! Limited Time Only!</div>
+        <!-- TOP AD BANNER -->
+        <div class="ad-banner" id="ad-login-top">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '29699d03a6d78ff0424b6d34e9386b6c',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/29699d03a6d78ff0424b6d34e9386b6c/invoke.js"></script>
+        </div>
         
         <div class="login-container">
             <form class="login-form" id="loginForm">
@@ -468,14 +450,36 @@ button {
             </form>
         </div>
         
-        <!-- BOTTOM AD BANNER: Edit content below -->
-        <div class="ad-banner bottom">🎮 NEW GAMES AVAILABLE: Download Now and Get Bonus Coins!</div>
+        <!-- BOTTOM AD BANNER -->
+        <div class="ad-banner bottom" id="ad-login-bottom">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '29699d03a6d78ff0424b6d34e9386b6c',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/29699d03a6d78ff0424b6d34e9386b6c/invoke.js"></script>
+        </div>
     </div>
 
     <!-- Home Screen -->
     <div id="homeScreen" class="screen">
-        <!-- TOP AD BANNER: Edit content below -->
-        <div class="ad-banner">🚀 FEATURED APP: Try Our New Photo Editor Pro - Free for 7 Days!</div>
+        <!-- TOP AD BANNER -->
+        <div class="ad-banner" id="ad-home-top">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '29699d03a6d78ff0424b6d34e9386b6c',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/29699d03a6d78ff0424b6d34e9386b6c/invoke.js"></script>
+        </div>
         
         <div class="home-container">
             <div class="search-container">
@@ -492,8 +496,19 @@ button {
             </div>
         </div>
         
-        <!-- BOTTOM AD BANNER: Edit content below -->
-        <div class="ad-banner bottom">💎 PREMIUM SUBSCRIPTION: Unlimited Downloads & No Ads - Only $4.99/month!</div>
+        <!-- BOTTOM AD BANNER -->
+        <div class="ad-banner bottom" id="ad-home-bottom">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '29699d03a6d78ff0424b6d34e9386b6c',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/29699d03a6d78ff0424b6d34e9386b6c/invoke.js"></script>
+        </div>
     </div>
 
     <!-- Ad Popup Modal -->
@@ -659,6 +674,13 @@ button {
         function init() {
             renderApps(apps);
             setupEventListeners();
+            refreshAds();
+        }
+
+        // Refresh ads when switching screens
+        function refreshAds() {
+            // This function ensures ads are properly loaded when switching between screens
+            // The ad scripts will automatically run when their containers are visible
         }
 
         // Setup event listeners
@@ -697,6 +719,7 @@ button {
                     homeScreen.style.opacity = '0';
                     setTimeout(() => {
                         homeScreen.style.opacity = '1';
+                        refreshAds(); // Refresh ads when switching to home screen
                     }, 50);
                 }, 300);
                 
@@ -835,9 +858,3 @@ button {
     </script>
 </body>
 </html>
-                        <script>function greet() {
-  alert("Hello from JavaScript!");
-}</script>
-                    </body>
-                    </html>
-                
