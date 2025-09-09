@@ -1,0 +1,844 @@
+
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Exported Code</title>
+                        <style>body {
+  font-family: sans-serif;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+h1 {
+  color: #0096FF;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #0096FF;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}</style>
+                    </head>
+                    <body>
+                        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppStore - Mobile App Store</title>
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            --primary-color: #007AFF;
+            --primary-hover: #0051D5;
+            --secondary-color: #34C759;
+            --danger-color: #FF3B30;
+            --bg-color: #F2F2F7;
+            --card-bg: #FFFFFF;
+            --text-primary: #000000;
+            --text-secondary: #8E8E93;
+            --border-color: #E5E5EA;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Hide all screens by default */
+        .screen {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            flex: 1;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ad Banner Styles */
+        .ad-banner {
+            background-color: #FFD700;
+            color: #333;
+            text-align: center;
+            padding: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ad-banner::before {
+            content: "📢";
+            margin-right: 8px;
+        }
+
+        .ad-banner.bottom {
+            margin-top: auto;
+        }
+
+        /* Login Screen Styles */
+        .login-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--bg-color);
+        }
+
+        .login-form {
+            background-color: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .app-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .app-logo h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .app-logo p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+            background-color: var(--card-bg);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Home Screen Styles */
+        .home-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-color);
+        }
+
+        /* Search Bar */
+        .search-container {
+            background-color: var(--card-bg);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: var(--bg-color);
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: var(--card-bg);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        /* Apps Grid */
+        .apps-container {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        /* App Card */
+        .app-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .app-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            margin: 0 auto 12px;
+            background-color: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            overflow: hidden;
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .app-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .app-category {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .download-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .download-btn.downloading {
+            background-color: var(--secondary-color);
+            cursor: not-allowed;
+        }
+
+        /* Ad Popup Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .ad-modal {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            max-width: 400px;
+            width: 100%;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .ad-content {
+            padding: 24px;
+            text-align: center;
+        }
+
+        .ad-placeholder {
+            background-color: #FFD700;
+            color: #333;
+            padding: 40px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .ad-timer {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .close-ad-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-ad-btn:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--text-primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .apps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .login-form {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .apps-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .apps-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen active">
+        <!-- TOP AD BANNER: Edit content below -->
+        <div class="ad-banner">🔥 HOT DEAL: Premium Apps 50% OFF! Limited Time Only!</div>
+        
+        <div class="login-container">
+            <form class="login-form" id="loginForm">
+                <div class="app-logo">
+                    <h1>AppStore</h1>
+                    <p>Your Gateway to Amazing Apps</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter your username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+        
+        <!-- BOTTOM AD BANNER: Edit content below -->
+        <div class="ad-banner bottom">🎮 NEW GAMES AVAILABLE: Download Now and Get Bonus Coins!</div>
+    </div>
+
+    <!-- Home Screen -->
+    <div id="homeScreen" class="screen">
+        <!-- TOP AD BANNER: Edit content below -->
+        <div class="ad-banner">🚀 FEATURED APP: Try Our New Photo Editor Pro - Free for 7 Days!</div>
+        
+        <div class="home-container">
+            <div class="search-container">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search apps..." id="searchInput">
+                </div>
+            </div>
+            
+            <div class="apps-container">
+                <div class="apps-grid" id="appsGrid">
+                    <!-- Apps will be dynamically generated here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- BOTTOM AD BANNER: Edit content below -->
+        <div class="ad-banner bottom">💎 PREMIUM SUBSCRIPTION: Unlimited Downloads & No Ads - Only $4.99/month!</div>
+    </div>
+
+    <!-- Ad Popup Modal -->
+    <div class="modal-overlay" id="adModal">
+        <div class="ad-modal">
+            <div class="ad-content">
+                <!-- AD POPUP CONTENT: Edit below -->
+                <div class="ad-placeholder">
+                    📱 SPECIAL OFFER<br>
+                    <small style="font-size: 14px; font-weight: normal;">Get Premium Features at 30% OFF!</small>
+                </div>
+                <div class="ad-timer" id="adTimer">Please wait 3 seconds...</div>
+                <button class="close-ad-btn" id="closeAdBtn" disabled>Continue to Download</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ==================== APP CUSTOMIZATION SECTION ====================
+        // Edit the apps array below to add your own apps
+        // Each app object has these properties:
+        // - id: unique number
+        // - name: app name (string)
+        // - category: app category (string)
+        // - icon: emoji icon (fallback if no image)
+        // - image: URL to app icon image (optional, remove if not using)
+        // - downloadLink: URL to download the app (required)
+        
+        const apps = [
+            {
+                id: 1,
+                name: 'Photo Editor Pro',
+                category: 'Productivity',
+                icon: '📷',
+                image: 'https://picsum.photos/seed/photoeditor/60/60.jpg',
+                downloadLink: 'https://example.com/download/photo-editor-pro'
+            },
+            {
+                id: 2,
+                name: 'Music Streamer',
+                category: 'Entertainment',
+                icon: '🎵',
+                image: 'https://picsum.photos/seed/musicstreamer/60/60.jpg',
+                downloadLink: 'https://example.com/download/music-streamer'
+            },
+            {
+                id: 3,
+                name: 'Weather Plus',
+                category: 'Weather',
+                icon: '☀️',
+                image: 'https://picsum.photos/seed/weatherplus/60/60.jpg',
+                downloadLink: 'https://example.com/download/weather-plus'
+            },
+            {
+                id: 4,
+                name: 'Fitness Tracker',
+                category: 'Health',
+                icon: '💪',
+                image: 'https://picsum.photos/seed/fitnesstracker/60/60.jpg',
+                downloadLink: 'https://example.com/download/fitness-tracker'
+            },
+            {
+                id: 5,
+                name: 'Chat Master',
+                category: 'Social',
+                icon: '💬',
+                image: 'https://picsum.photos/seed/chatmaster/60/60.jpg',
+                downloadLink: 'https://example.com/download/chat-master'
+            },
+            {
+                id: 6,
+                name: 'Game Center',
+                category: 'Games',
+                icon: '🎮',
+                image: 'https://picsum.photos/seed/gamecenter/60/60.jpg',
+                downloadLink: 'https://example.com/download/game-center'
+            },
+            {
+                id: 7,
+                name: 'Note Taker',
+                category: 'Productivity',
+                icon: '📝',
+                image: 'https://picsum.photos/seed/notetaker/60/60.jpg',
+                downloadLink: 'https://example.com/download/note-taker'
+            },
+            {
+                id: 8,
+                name: 'News Reader',
+                category: 'News',
+                icon: '📰',
+                image: 'https://picsum.photos/seed/newsreader/60/60.jpg',
+                downloadLink: 'https://example.com/download/news-reader'
+            },
+            {
+                id: 9,
+                name: 'Calculator Pro',
+                category: 'Tools',
+                icon: '🔢',
+                image: 'https://picsum.photos/seed/calculatorpro/60/60.jpg',
+                downloadLink: 'https://example.com/download/calculator-pro'
+            },
+            {
+                id: 10,
+                name: 'Video Player',
+                category: 'Media',
+                icon: '🎬',
+                image: 'https://picsum.photos/seed/videoplayer/60/60.jpg',
+                downloadLink: 'https://example.com/download/video-player'
+            },
+            {
+                id: 11,
+                name: 'Calendar Plus',
+                category: 'Productivity',
+                icon: '📅',
+                image: 'https://picsum.photos/seed/calendarplus/60/60.jpg',
+                downloadLink: 'https://example.com/download/calendar-plus'
+            },
+            {
+                id: 12,
+                name: 'Map Navigator',
+                category: 'Travel',
+                icon: '🗺️',
+                image: 'https://picsum.photos/seed/mapnavigator/60/60.jpg',
+                downloadLink: 'https://example.com/download/map-navigator'
+            },
+            {
+                id: 13,
+                name: 'VI Video Editor',
+                category: 'vi',
+                icon: '🎥',
+                image: 'https://picsum.photos/seed/vivideoeditor/60/60.jpg',
+                downloadLink: 'https://example.com/download/vi-video-editor'
+            },
+            {
+                id: 14,
+                name: 'Quantum Revolution',
+                category: 'Games',
+                icon: '🌌',
+                image: 'https://picsum.photos/seed/quantumrevolution/60/60.jpg',
+                downloadLink: 'https://example.com/download/quantum-revolution'
+            }
+        ];
+        // ==================== END APP CUSTOMIZATION ====================
+
+        // DOM Elements
+        const loginScreen = document.getElementById('loginScreen');
+        const homeScreen = document.getElementById('homeScreen');
+        const loginForm = document.getElementById('loginForm');
+        const appsGrid = document.getElementById('appsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const adModal = document.getElementById('adModal');
+        const closeAdBtn = document.getElementById('closeAdBtn');
+        const adTimer = document.getElementById('adTimer');
+        const toast = document.getElementById('toast');
+
+        // Current downloading app
+        let currentDownloadingApp = null;
+
+        // Initialize the app
+        function init() {
+            renderApps(apps);
+            setupEventListeners();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Login form submission
+            loginForm.addEventListener('submit', handleLogin);
+            
+            // Search functionality
+            searchInput.addEventListener('input', handleSearch);
+            
+            // Close ad modal
+            closeAdBtn.addEventListener('click', closeAdModal);
+            
+            // Close modal on overlay click
+            adModal.addEventListener('click', (e) => {
+                if (e.target === adModal) {
+                    closeAdModal();
+                }
+            });
+        }
+
+        // Handle login
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation (in real app, this would be server-side)
+            if (username && password) {
+                // Show transition effect
+                loginScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loginScreen.classList.remove('active');
+                    homeScreen.classList.add('active');
+                    homeScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        homeScreen.style.opacity = '1';
+                    }, 50);
+                }, 300);
+                
+                showToast(`Welcome back, ${username}!`);
+            }
+        }
+
+        // Render apps grid
+        function renderApps(appsToRender) {
+            appsGrid.innerHTML = '';
+            
+            appsToRender.forEach(app => {
+                const appCard = createAppCard(app);
+                appsGrid.appendChild(appCard);
+            });
+        }
+
+        // Create app card element
+        function createAppCard(app) {
+            const card = document.createElement('div');
+            card.className = 'app-card';
+            
+            // Create icon HTML - use image if available, otherwise emoji
+            let iconHTML = '';
+            if (app.image) {
+                iconHTML = `<img src="${app.image}" alt="${app.name}">`;
+            } else {
+                iconHTML = app.icon;
+            }
+            
+            card.innerHTML = `
+                <div class="app-icon">${iconHTML}</div>
+                <div class="app-name">${app.name}</div>
+                <div class="app-category">${app.category}</div>
+                <button class="download-btn" data-app-id="${app.id}" data-app-name="${app.name}" data-download-link="${app.downloadLink}">
+                    Download
+                </button>
+            `;
+            
+            // Add download button click handler
+            const downloadBtn = card.querySelector('.download-btn');
+            downloadBtn.addEventListener('click', () => handleDownload(app));
+            
+            return card;
+        }
+
+        // Handle search
+        function handleSearch(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            const filteredApps = apps.filter(app => 
+                app.name.toLowerCase().includes(searchTerm) ||
+                app.category.toLowerCase().includes(searchTerm)
+            );
+            
+            renderApps(filteredApps);
+        }
+
+        // Handle download
+        function handleDownload(app) {
+            currentDownloadingApp = app;
+            showAdModal();
+        }
+
+        // Show ad modal
+        function showAdModal() {
+            adModal.classList.add('active');
+            let countdown = 3;
+            
+            closeAdBtn.disabled = true;
+            adTimer.textContent = `Please wait ${countdown} seconds...`;
+            
+            const timerInterval = setInterval(() => {
+                countdown--;
+                
+                if (countdown > 0) {
+                    adTimer.textContent = `Please wait ${countdown} seconds...`;
+                } else {
+                    clearInterval(timerInterval);
+                    closeAdBtn.disabled = false;
+                    adTimer.textContent = 'Ready to download!';
+                }
+            }, 1000);
+        }
+
+        // Close ad modal and start download
+        function closeAdModal() {
+            if (closeAdBtn.disabled) return;
+            
+            adModal.classList.remove('active');
+            
+            if (currentDownloadingApp) {
+                startDownload(currentDownloadingApp);
+                currentDownloadingApp = null;
+            }
+        }
+
+        // Start download simulation
+        function startDownload(app) {
+            const downloadBtn = document.querySelector(`[data-app-id="${app.id}"]`);
+            
+            if (downloadBtn && !downloadBtn.classList.contains('downloading')) {
+                downloadBtn.classList.add('downloading');
+                downloadBtn.textContent = 'Downloading...';
+                downloadBtn.disabled = true;
+                
+                showToast(`Downloading ${app.name}...`);
+                
+                // Simulate download completion
+                setTimeout(() => {
+                    downloadBtn.classList.remove('downloading');
+                    downloadBtn.textContent = 'Installed';
+                    downloadBtn.style.backgroundColor = 'var(--text-secondary)';
+                    showToast(`${app.name} installed successfully!`);
+                    
+                    // Open download link in new tab after "installation"
+                    if (app.downloadLink) {
+                        window.open(app.downloadLink, '_blank');
+                    }
+                }, 3000);
+            }
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
+                        <script>function greet() {
+  alert("Hello from JavaScript!");
+}</script>
+                    </body>
+                    </html>
+                
