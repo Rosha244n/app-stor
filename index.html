@@ -367,16 +367,72 @@
     </div>
 
     <script>
-        // Sample app data
+        // Sample app data - You can easily modify this section
         const apps = [
-            { id: 1, name: "Social Media", category: "Social", icon: "https://picsum.photos/seed/app1/80/80.jpg" },
-            { id: 2, name: "Photo Editor", category: "Productivity", icon: "https://picsum.photos/seed/app2/80/80.jpg" },
-            { id: 3, name: "Music Player", category: "Entertainment", icon: "https://picsum.photos/seed/app3/80/80.jpg" },
-            { id: 4, name: "Weather", category: "Lifestyle", icon: "https://picsum.photos/seed/app4/80/80.jpg" },
-            { id: 5, name: "Fitness Tracker", category: "Health", icon: "https://picsum.photos/seed/app5/80/80.jpg" },
-            { id: 6, name: "News Reader", category: "News", icon: "https://picsum.photos/seed/app6/80/80.jpg" },
-            { id: 7, name: "Banking App", category: "Finance", icon: "https://picsum.photos/seed/app7/80/80.jpg" },
-            { id: 8, name: "Game Center", category: "Games", icon: "https://picsum.photos/seed/app8/80/80.jpg" }
+            { 
+                id: 1, 
+                name: "Social Media", 
+                category: "Social", 
+                icon: "https://picsum.photos/seed/app1/80/80.jpg",
+                title: "Connect with friends worldwide",
+                downloadLink: "https://example.com/download/social-media"
+            },
+            { 
+                id: 2, 
+                name: "Photo Editor", 
+                category: "Productivity", 
+                icon: "https://picsum.photos/seed/app2/80/80.jpg",
+                title: "Edit photos like a pro",
+                downloadLink: "https://example.com/download/photo-editor"
+            },
+            { 
+                id: 3, 
+                name: "Music Player", 
+                category: "Entertainment", 
+                icon: "https://picsum.photos/seed/app3/80/80.jpg",
+                title: "Stream your favorite music",
+                downloadLink: "https://example.com/download/music-player"
+            },
+            { 
+                id: 4, 
+                name: "Weather", 
+                category: "Lifestyle", 
+                icon: "https://picsum.photos/seed/app4/80/80.jpg",
+                title: "Accurate weather forecasts",
+                downloadLink: "https://example.com/download/weather"
+            },
+            { 
+                id: 5, 
+                name: "Fitness Tracker", 
+                category: "Health", 
+                icon: "https://picsum.photos/seed/app5/80/80.jpg",
+                title: "Track your workouts and progress",
+                downloadLink: "https://example.com/download/fitness-tracker"
+            },
+            { 
+                id: 6, 
+                name: "News Reader", 
+                category: "News", 
+                icon: "https://picsum.photos/seed/app6/80/80.jpg",
+                title: "Stay updated with latest news",
+                downloadLink: "https://example.com/download/news-reader"
+            },
+            { 
+                id: 7, 
+                name: "Banking App", 
+                category: "Finance", 
+                icon: "https://picsum.photos/seed/app7/80/80.jpg",
+                title: "Secure mobile banking",
+                downloadLink: "https://example.com/download/banking-app"
+            },
+            { 
+                id: 8, 
+                name: "Game Center", 
+                category: "Games", 
+                icon: "https://picsum.photos/seed/app8/80/80.jpg",
+                title: "Play exciting games",
+                downloadLink: "https://example.com/download/game-center"
+            }
         ];
 
         // DOM Elements
@@ -476,6 +532,14 @@
                 if (button) {
                     button.textContent = 'Downloading...';
                     button.disabled = true;
+                    
+                    // If there's a download link, open it in a new tab
+                    if (app.downloadLink) {
+                        // Open download link in a new tab after a short delay
+                        setTimeout(() => {
+                            window.open(app.downloadLink, '_blank');
+                        }, 1000);
+                    }
                     
                     // Simulate download completion after 2 seconds
                     setTimeout(() => {
